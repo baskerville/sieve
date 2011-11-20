@@ -1,5 +1,3 @@
-# color_sieve -- a python script to extract a palette from an image
-
 ![out_1](http://f.cl.ly/items/1R0T1L1T0g0m2r240B1U/output_20111120_124649.png)
 
 
