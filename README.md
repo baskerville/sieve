@@ -14,8 +14,10 @@
                 Generates colors for each luminance in <list>.
             -m, --min-ab-distance <value>
                 Lower bound for the ab-distance.
-            -M, --max-ab-distance-range <value>
+            -M, --max-ab-distance <value>
                 Upper bound for the ab-distance.
+            -u, --saturation-range <min-max>
+                Colors which saturation isn't in the given range are discarded.
             -r, --square-side <length>
                 Set the side <length> in pixels of the output squares.
             -p, --pulse-every <value>

@@ -14,6 +14,8 @@ PALETTE_SIZE = 6
 OUTPUT_SQUARE_SIDE = 30
 MIN_AB_DISTANCE = 20
 MAX_AB_DISTANCE = 300
+MIN_SATURATION = 0
+MAX_SATURATION = 100
 PULSE_EVERY = 10000
 OUTPUT_NAME = 'output.png'
 VERBOSE_PROGRESS = False
@@ -35,8 +37,10 @@ def usage():
                     Generates colors for each luminance in <list> (default: "%s").
                 -m, --min-ab-distance <value>
                     Lower bound for the ab-distance (default: "%s").
-                -M, --max-ab-distance-range <value>
+                -M, --max-ab-distance <value>
                     Upper bound for the ab-distance (default: "%s").
+                -u, --saturation-range <min-max>
+                    Colors which saturation isn't in the given range are discarded (default: "%s").
                 -r, --square-side <length>
                     Set the side <length> in pixels of the output squares (default: "%s").
                 -p, --pulse-every <value>
@@ -47,10 +51,10 @@ def usage():
                     Use luminance values taken from the 'solarized' scale.
                 -v, --verbose-progress
                     Show informations about the palette while it's being generated.
-''' % (os.path.basename(sys.argv[0]), OUTPUT_NAME, PALETTE_SIZE, ','.join(map(str, LUMINANCES)), MIN_AB_DISTANCE, MAX_AB_DISTANCE, OUTPUT_SQUARE_SIDE, PULSE_EVERY)
+''' % (os.path.basename(sys.argv[0]), OUTPUT_NAME, PALETTE_SIZE, ','.join(map(str, LUMINANCES)), MIN_AB_DISTANCE, MAX_AB_DISTANCE, '%s-%s' % (MIN_SATURATION, MAX_SATURATION), OUTPUT_SQUARE_SIDE, PULSE_EVERY)
     sys.exit()
 
-def make_palette(img, output_name, palette_size, luminances, min_ab_distance, max_ab_distance, output_square_side, pulse_every, verbose_progress):
+def make_palette(img, output_name, palette_size, luminances, min_ab_distance, max_ab_distance, min_saturation, max_saturation, output_square_side, pulse_every, verbose_progress):
     random.seed()
     width, height = img.size
     data = list(img.getdata())
@@ -58,10 +62,17 @@ def make_palette(img, output_name, palette_size, luminances, min_ab_distance, ma
     while len(palette) < palette_size and len(data) > 0:
         randindex = random.randint(0, len(data) - 1)
         pixel = data.pop(randindex)
+        remaining_pixels = len(data)
+        if (remaining_pixels % pulse_every) == 0 and remaining_pixels > 0 and verbose_progress:
+            print '%s pixels left' % remaining_pixels
         if type(pixel) is int:
             pixel = [pixel, pixel, pixel]
         (red, green, blue) = pixel
         rgb = RGBColor(red, green, blue)
+        hsv = rgb.convert_to('hsv')
+        saturation = 100 * hsv.hsv_s
+        if saturation < min_saturation or saturation > max_saturation:
+            continue
         color = rgb.convert_to('lab')
         a = color.lab_a
         b = color.lab_b
@@ -80,9 +91,6 @@ def make_palette(img, output_name, palette_size, luminances, min_ab_distance, ma
                 need_more = (palette_size - len(palette))
                 if need_more < palette_size and need_more > 0:
                     print 'need %s more\n' % need_more
-        remaining_pixels = len(data)
-        if (remaining_pixels % pulse_every) == 0 and remaining_pixels > 0 and verbose_progress:
-            print '%s pixels left' % remaining_pixels
 
     output_width = len(palette) * output_square_side
     output_height = len(luminances) * output_square_side
@@ -111,7 +119,7 @@ def make_palette(img, output_name, palette_size, luminances, min_ab_distance, ma
 
 def main():
     try:
-        opts, args = getopt(sys.argv[1:], 'hkvzo:s:l:m:M:r:p:', ['help', 'keep-luminance', 'solarized-luminances', 'verbose-progress', 'output=', 'size=', 'luminances=', 'min-ab-distance=', 'max-ab-distance=', 'square-side=', 'pulse-every='])
+        opts, args = getopt(sys.argv[1:], 'hkvzo:s:l:m:M:u:r:p:', ['help', 'keep-luminance', 'solarized-luminances', 'verbose-progress', 'output=', 'size=', 'luminances=', 'min-ab-distance=', 'max-ab-distance=', 'saturation-range=', 'square-side=', 'pulse-every='])
     except GetoptError as (msg, opt):
         print >> sys.stderr, "%s" % msg
         sys.exit(1)
@@ -124,6 +132,8 @@ def main():
     luminances = LUMINANCES
     min_ab_distance = MIN_AB_DISTANCE
     max_ab_distance = MAX_AB_DISTANCE
+    min_saturation = MIN_SATURATION
+    max_saturation = MAX_SATURATION
     output_square_side = OUTPUT_SQUARE_SIDE
     pulse_every = PULSE_EVERY
     verbose_progress = VERBOSE_PROGRESS
@@ -147,6 +157,8 @@ def main():
             min_ab_distance = float(val)
         elif opt in ('-M', '--max-ab-distance'):
             max_ab_distance = float(val)
+        elif opt in ('-u', '--saturation-range'):
+            (min_saturation, max_saturation) = map(int, val.split('-'))
         elif opt in ('-r', '--square-side'):
             output_square_side = int(val)
         elif opt in ('-p', '--pulse-every'):
@@ -163,7 +175,7 @@ def main():
         print >> sys.stderr, "could not open '%s'" % file_name
         sys.exit(1)
 
-    make_palette(img, output_name, palette_size, luminances, min_ab_distance, max_ab_distance, output_square_side, pulse_every, verbose_progress)
+    make_palette(img, output_name, palette_size, luminances, min_ab_distance, max_ab_distance, min_saturation, max_saturation, output_square_side, pulse_every, verbose_progress)
 
 if __name__ == '__main__':
     main()
