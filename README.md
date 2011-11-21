@@ -33,13 +33,13 @@
 The following iteration is performed until the number of colors in the palette is superior or equal to `size` or if all the pixels in the input image are exhausted:
 
 - One random color is picked from the input image
-- If its euclidean a\*b\*-distance to the palette is superior to `min_ab_distance` (and inferior to `max_ab_distance`) or if the palette is empty, then the color is added to the palette.
+- If its euclidean ab-distance to the palette is superior to `min_ab_distance` (and inferior to `max_ab_distance`) or if the palette is empty, then the color is added to the palette.
 
 ## Towards Elementary Rules for the Crafting of Terminal Colors
 
 - Each color should be easily differentiable from each other.
 - Each color should be perfectly readable over the background color.
 - The two most import choices are those of the background and foreground colors.
-- L\* component of colors in the L\*a\*b\* space should be uniform in the bright and dark groups.
+- L component of colors in the L\*a\*b space should be uniform in the bright and dark groups.
 - Overly saturated colors should be avoided as they bleed and steel the focus.
 - The number of readable bg / fg combinations of the monotones should be maximized.
