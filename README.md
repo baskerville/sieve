@@ -30,6 +30,10 @@
                 Show informations about the palette while it's being generated.
 
 
+## Dependencies
+
+python2, PIL and python-colormath.
+
 ## Algorithm
 
 The following iteration is performed until the number of colors in the palette is superior or equal to `size` or if all the pixels in the input image are exhausted:
