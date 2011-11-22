@@ -56,6 +56,7 @@ def usage():
 
 def make_palette(img, output_name, palette_size, luminances, min_ab_distance, max_ab_distance, min_luminance, max_luminance, output_square_side, pulse_every, verbose_progress):
     random.seed()
+    img = img.convert('RGB')
     width, height = img.size
     data = list(img.getdata())
 
