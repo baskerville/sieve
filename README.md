@@ -16,8 +16,8 @@
                 Lower bound for the ab-distance.
             -M, --max-ab-distance <value>
                 Upper bound for the ab-distance.
-            -u, --saturation-range <min-max>
-                Colors which saturation isn't in the given range are discarded.
+            -u, --luminance-range <min-max>
+                Colors which L*a*b luminance isn't in the given range are discarded.
             -r, --square-side <length>
                 Set the side <length> in pixels of the output squares.
             -p, --pulse-every <value>
