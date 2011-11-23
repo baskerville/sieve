@@ -173,7 +173,7 @@ def main():
             max_ab_distance = float(val)
         elif opt in ('-n', '--luminance-range'):
             (min_norm, max_norm) = map(int, val.split('-'))
-        elif opt in ('-u', '--luminance-range'):
+        elif opt in ('-u', '--norm-range'):
             (min_luminance, max_luminance) = map(int, val.split('-'))
         elif opt in ('-r', '--square-side'):
             output_square_side = int(val)
