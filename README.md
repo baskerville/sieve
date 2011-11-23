@@ -16,6 +16,8 @@
                 Lower bound for the ab-distance.
             -M, --max-ab-distance <value>
                 Upper bound for the ab-distance.
+            -n, --norm-range <min-max>
+                Colors which ab-norm isn't in the given range are discarded.
             -u, --luminance-range <min-max>
                 Colors which L*a*b luminance isn't in the given range are discarded.
             -r, --square-side <length>
