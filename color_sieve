@@ -8,7 +8,7 @@ from getopt import getopt, GetoptError
 from math import sqrt, pow
 from colormath.color_objects import LabColor, RGBColor
 
-LUMINANCES = [60, 40]
+LUMINANCES = [80, 50]
 SOLARIZED_LUMINANCES = [97,  92,  65,  60,  50,  45,  20, 15]
 PALETTE_SIZE = 6
 OUTPUT_SQUARE_SIDE = 30

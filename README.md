@@ -45,7 +45,11 @@ The following iteration is performed until the number of colors in the palette i
 
 - Each color should be easily differentiable from each other.
 - Each color should be perfectly readable over the background color.
-- The two most import choices are those of the background and foreground colors.
+- The two most import choices are those of the background and foreground colors (a luminance difference of 40 might be a good starting point).
 - L component of colors in the L\*a\*b space should be uniform in the bright and dark groups.
 - Overly saturated colors should be avoided as they bleed and steel the focus.
-- The number of readable bg / fg combinations of the monotones should be maximized.
+- The number of readable background / foreground combinations of the monotones should be maximized.
+
+## Color Exploration Tools
+
+gpick.
