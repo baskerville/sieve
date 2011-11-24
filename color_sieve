@@ -99,6 +99,7 @@ def make_palette(img, output_name, palette_size, luminances, min_ab_distance, ma
             palette.append(color)
             if verbose_progress:
                 print '\ndistance to palette:  %s' % distance
+                print ('#%02x%02x%02x' % (red, green, blue)).upper()
                 print 'L* %s a* %s b* %s' % (color.lab_l, a, b)
                 need_more = (palette_size - len(palette))
                 if need_more < palette_size and need_more > 0:
