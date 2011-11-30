@@ -43,15 +43,6 @@ The following iteration is performed until the number of colors in the palette i
 - One random color is picked from the input image
 - If its euclidean ab-distance to the palette is superior to `min_ab_distance` (and inferior to `max_ab_distance`) or if the palette is empty, then the color is added to the palette.
 
-## Towards Elementary Rules for the Crafting of Terminal Colors
-
-- Each color should be easily differentiable from each other.
-- Each color should be perfectly readable over the background color.
-- The two most import choices are those of the background and foreground colors (a luminance difference of 40 might be a good starting point).
-- L component of colors in the L\*a\*b space should be uniform in the bright and dark groups.
-- Overly saturated colors should be avoided as they bleed and steel the focus.
-- The number of readable background / foreground combinations of the monotones should be maximized.
-
 ## Color Exploration Tools
 
 gpick.
