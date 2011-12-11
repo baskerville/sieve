@@ -19,7 +19,7 @@
             -n, --norm-range <min-max>
                 Colors which ab-norm isn't in the given range are discarded.
             -u, --luminance-range <min-max>
-                Colors which L*a*b luminance isn't in the given range are discarded.
+                Colors which L*a*b* luminance isn't in the given range are discarded.
             -r, --square-side <length>
                 Set the side <length> in pixels of the output squares.
             -p, --pulse-every <value>
