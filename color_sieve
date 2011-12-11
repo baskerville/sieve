@@ -44,7 +44,7 @@ def usage():
                 -n, --norm-range <min-max>
                     Colors which ab-norm isn't in the given range are discarded (default: "%s").
                 -u, --luminance-range <min-max>
-                    Colors which L*a*b luminance isn't in the given range are discarded (default: "%s").
+                    Colors which L*a*b* luminance isn't in the given range are discarded (default: "%s").
                 -r, --square-side <length>
                     Set the side <length> in pixels of the output squares (default: "%s").
                 -p, --pulse-every <value>
