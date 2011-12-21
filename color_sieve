@@ -26,35 +26,48 @@ palette=[]
 
 def usage():
     print '''
-       SYNOPSIS
-                %s [options] <image>
-       OPTIONS
-                -h, --help
-                    Show this message.
-                -o, --output <name>
-                    Save the generated palette to <name> (default: "%s").
-                -s, --size <num>
-                    Generates a palette of <num> colors (default: "%s").
-                -l, --luminances <list>
-                    Generates colors for each luminance in <list> (default: "%s").
-                -m, --min-ab-distance <value>
-                    Lower bound for the ab-distance (default: "%s").
-                -M, --max-ab-distance <value>
-                    Upper bound for the ab-distance (default: "%s").
-                -n, --norm-range <min-max>
-                    Colors which ab-norm isn't in the given range are discarded (default: "%s").
-                -u, --luminance-range <min-max>
-                    Colors which L*a*b* luminance isn't in the given range are discarded (default: "%s").
-                -r, --square-side <length>
-                    Set the side <length> in pixels of the output squares (default: "%s").
-                -p, --pulse-every <value>
-                    If verbose mode is activated, show remaining pixels count every <value> pixels (default: "%s").
-                -k, --keep-luminance
-                    Keep original luminance in the output.
-                -z, --solarized-luminances
-                    Use luminance values taken from the 'solarized' scale.
-                -v, --verbose-progress
-                    Show informations about the palette while it's being generated.
+SYNOPSIS
+    %s [options] <image>
+
+OPTIONS
+    -h, --help
+        Show this message.
+
+    -o, --output <name>
+        Save the generated palette to <name> (default: "%s").
+
+    -s, --size <num>
+        Generates a palette of <num> colors (default: "%s").
+
+    -l, --luminances <list>
+        Generates colors for each luminance in <list> (default: "%s").
+
+    -m, --min-ab-distance <value>
+        Lower bound for the ab-distance (default: "%s").
+
+    -M, --max-ab-distance <value>
+        Upper bound for the ab-distance (default: "%s").
+
+    -n, --norm-range <min-max>
+        Colors which ab-norm isn't in the given range are discarded (default: "%s").
+
+    -u, --luminance-range <min-max>
+        Colors which L*a*b* luminance isn't in the given range are discarded (default: "%s").
+
+    -r, --square-side <length>
+        Set the side <length> in pixels of the output squares (default: "%s").
+
+    -p, --pulse-every <value>
+        If verbose mode is activated, show remaining pixels count every <value> pixels (default: "%s").
+
+    -k, --keep-luminance
+        Keep original luminance in the output.
+
+    -z, --solarized-luminances
+        Use luminance values taken from the 'solarized' scale.
+
+    -v, --verbose-progress
+        Show informations about the palette while it's being generated.
 ''' % (os.path.basename(sys.argv[0]), OUTPUT_NAME, PALETTE_SIZE, ','.join(map(str, LUMINANCES)), MIN_AB_DISTANCE, MAX_AB_DISTANCE, '%s-%s' % (MIN_NORM, MAX_NORM), '%s-%s' % (MIN_LUMINANCE, MAX_LUMINANCE), OUTPUT_SQUARE_SIDE, PULSE_EVERY)
     sys.exit()
 
