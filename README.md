@@ -1,4 +1,4 @@
-![out_1](http://s3.kkloud.com/gett/static/scaled/9WzAdIA-0.nfhpyqvamq11c3di.png)
+![logo](http://blobs.ge.tt/4EcnB8B/color_sieve_logo.png?sig=-TRh30DsPgF0LlWwjayIW4AR5-ZvzWAsDa8)
 
 
     SYNOPSIS
