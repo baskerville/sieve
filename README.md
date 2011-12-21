@@ -1,4 +1,4 @@
-![logo](http://blobs.ge.tt/4EcnB8B/color_sieve_logo.png?sig=-TRh30DsPgF0LlWwjayIW4AR5-ZvzWAsDa8)
+![logo](https://github.com/baskerville/color_sieve/raw/master/preview/color_sieve_logo.png)
 
 
     SYNOPSIS
