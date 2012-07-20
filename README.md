@@ -1,5 +1,6 @@
 ![logo](https://github.com/baskerville/color_sieve/raw/master/preview/logo-color_sieve.png)
 
+## Usage
 
     SYNOPSIS
             color_sieve [options] FILENAME ...
