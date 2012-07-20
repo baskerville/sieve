@@ -23,7 +23,7 @@
 
 ## Description
 
-*color_sieve* prints on the standard output the hex value of the color(s) read from the given image file(s) matching the given constraints.
+*color_sieve* prints to the standard output the hex representation of the colors read from the given image files satisfying the given constraints.
 
 ## Dependencies
 
