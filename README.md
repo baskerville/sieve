@@ -21,6 +21,10 @@
                 Discard colors outside of the given hue range.
 
 
+## Description
+
+*color_sieve* prints on the standard output the hex value of the color(s) read from the given image file(s) matching the given constraints.
+
 ## Dependencies
 
 python2, PIL and python-colormath.
