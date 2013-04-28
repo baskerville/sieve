@@ -27,4 +27,6 @@
 
 ## Dependencies
 
-python2, PIL and python-colormath.
+- python3.
+- Pillow.
+- python-colormath.
