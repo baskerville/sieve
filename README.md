@@ -1,9 +1,9 @@
-![logo](https://github.com/baskerville/color_sieve/raw/master/preview/logo-color_sieve.png)
+![logo](https://github.com/baskerville/sieve/raw/master/preview/logo-sieve.png)
 
 ## Usage
 
     SYNOPSIS
-            color_sieve [options] FILENAME ...
+            sieve [options] FILENAME ...
     OPTIONS
             -h, --help
                 Show this message.
@@ -23,7 +23,7 @@
 
 ## Description
 
-*color_sieve* prints to the standard output the hex representation of the colors read from the given image files satisfying the given constraints.
+*sieve* prints to the standard output the hex representation of the colors read from the given image files satisfying the given constraints.
 
 ## Dependencies
 
