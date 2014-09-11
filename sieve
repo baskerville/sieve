@@ -1,11 +1,12 @@
 #! /usr/bin/env python3
-# -*- coding: utf-8 -*-
 
-import sys, os
+import os
+import sys
 import random
 from PIL import Image
 from getopt import getopt
-from colormath.color_objects import LCHabColor, RGBColor
+from colormath.color_objects import LCHabColor, sRGBColor
+from colormath.color_conversions import convert_color
 
 min_lightness, max_lightness = (0, 100)
 min_chroma, max_chroma = (0, 200)
@@ -39,30 +40,21 @@ def make_palette(img):
     global num_colors, min_lightness, max_lightness, min_chroma, max_chroma, min_hue, max_hue
 
     random.seed()
-    img = img.convert('RGBA')
+    img = img.convert('RGB')
     data = list(img.getdata())
     palette = set()
 
     while (len(palette) < num_colors or num_colors < 1) and len(data) > 0:
         randindex = random.randint(0, len(data) - 1)
         pixel = data.pop(randindex)
-
-        if type(pixel) is int:
-            pixel = [pixel, pixel, pixel, 255]
-
-        (red, green, blue, alpha) = pixel
-
-        if alpha < 255:
-            continue
-
-        rgb_color = RGBColor(red, green, blue)
-        lch_color = rgb_color.convert_to('lchab')
+        rgb_color = sRGBColor(*pixel, is_upscaled=True)
+        lch_color = convert_color(rgb_color, LCHabColor)
         L, C, H = lch_color.get_value_tuple()
 
         if (min_lightness <= L <= max_lightness
                 and min_chroma <= C <= max_chroma
                 and min_hue <= H <= max_hue):
-            hex_color = rgb_color.get_rgb_hex().upper()
+            hex_color = rgb_color.get_rgb_hex()
             palette.add(hex_color)
 
     for hex_color in palette:
@@ -71,30 +63,30 @@ def make_palette(img):
 def main():
     global num_colors, min_lightness, max_lightness, min_chroma, max_chroma, min_hue, max_hue
 
-    opts, args = getopt(sys.argv[1:], 'hn:L:C:H:', ['help', 'num-colors=', 'lightness-range=', 'chroma-range=', 'hue-range='])
+    opts, args = getopt(sys.argv[1:], "hn:L:C:H:", ["help", "num-colors=", "lightness-range=", "chroma-range=", "hue-range="])
 
     if len(args) < 1:
         usage()
 
     for opt, val in opts:
-        if opt in ('-h', '--help'):
+        if opt in ("-h", "--help"):
             usage()
-        elif opt in ('-n', '--num-colors'):
+        elif opt in ("-n", "--num-colors"):
             num_colors = int(val)
-        elif opt in ('-L', '--lightness-range'):
+        elif opt in ("-L", "--lightness-range"):
             min_lightness, max_lightness = map(int, val.split('-'))
-        elif opt in ('-C', '--chroma-range'):
+        elif opt in ("-C", "--chroma-range"):
             min_chroma, max_chroma = map(int, val.split('-'))
-        elif opt in ('-H', '--hue-range'):
+        elif opt in ("-H", "--hue-range"):
             min_hue, max_hue = map(int, val.split('-'))
 
     for file_name in args:
         try:
             img = Image.open(file_name)
         except IOError:
-            print("Couldn't open '%s'.".format(file_name), file=sys.stderr)
+            print("Couldn't open '{}'.".format(file_name), file=sys.stderr)
             sys.exit(1)
         make_palette(img)
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
